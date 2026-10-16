@@ -1,9 +1,8 @@
-name: Android Build
-on: workflow_dispatch
-
-jobs: 
-'build':
-'runs-on': ubuntu-latest
+name: Test
+on:
+workflow_dispatch:
+jobs:
+test:
+runs-on: ubuntu-latest
 steps:
-- name: Test workflow
-run: echo "APK MASTER PRO workflow berjalan"
+- run: echo "Berhasil"
