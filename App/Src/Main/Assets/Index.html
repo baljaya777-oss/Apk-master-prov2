@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>APK MASTER PRO</title>
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  padding:24px;
+  background:#080808;
+  color:#f5f5f5;
+  font-family:Arial,sans-serif
+}
+header{
+  padding:24px;
+  border:1px solid #b99142;
+  border-radius:18px;
+  background:linear-gradient(135deg,#222,#080808)
+}
+h1{color:#e7c16d;font-size:26px}
+p{color:#bbb;line-height:1.6}
+.card{
+  margin-top:18px;
+  padding:20px;
+  border:1px solid #444;
+  border-radius:14px;
+  background:#151515
+}
+button{
+  width:100%;
+  padding:14px;
+  border:0;
+  border-radius:10px;
+  background:#d7ad54;
+  color:#111;
+  font-weight:bold;
+  font-size:15px
+}
+input{
+  width:100%;
+  padding:12px;
+  margin:12px 0;
+  background:#222;
+  color:white;
+  border:1px solid #555;
+  border-radius:8px
+}
+</style>
+</head>
+<body>
+<header>
+<h1>APK MASTER PRO</h1>
+<p>HTML to Android APK Builder</p>
+<p>Kelola proyek HTML dan siapkan aplikasi Android milikmu.</p>
+</header>
+
+<div class="card">
+<h3>1. Impor Proyek HTML</h3>
+<input type="file" id="htmlFile" accept=".html,.htm">
+<button onclick="previewHTML()">Lihat Preview</button>
+</div>
+
+<div class="card">
+<h3>2. Pengaturan Aplikasi</h3>
+<label>Nama aplikasi</label>
+<input id="appName" value="Aplikasi Saya">
+<label>Package name</label>
+<input id="packageName" value="com.aplikasi.saya">
+</div>
+
+<div class="card">
+<h3>3. Status Proyek</h3>
+<p id="status">Belum ada file HTML yang dipilih.</p>
+</div>
+
+<script>
+function previewHTML(){
+  const file=document.getElementById('htmlFile').files[0];
+  const status=document.getElementById('status');
+
+  if(!file){
+    status.textContent='Pilih file HTML terlebih dahulu.';
+    return;
+  }
+
+  const reader=new FileReader();
+  reader.onload=function(){
+    const win=window.open('','_blank');
+    if(win){
+      win.document.open();
+      win.document.write(reader.result);
+      win.document.close();
+      status.textContent='Preview berhasil dibuka.';
+    }else{
+      status.textContent='Browser memblokir preview. Izinkan pop-up lalu coba lagi.';
+    }
+  };
+  reader.readAsText(file);
+}
+</script>
+</body>
+</html>
